@@ -264,7 +264,7 @@ int main() {
     
     //Deal with files
     ifstream fileObj1;
-    fileObj1.open("1.txt");
+    fileObj1.open("data.txt");
     
     //Declare the main array and fill it with data from the file
     float dataArray[870][5];
@@ -285,7 +285,7 @@ int main() {
     
     float inputAlpha, inputBeta, inputMach, inputY, inputX;
 
-    /*
+    
     cout << "Введите значение alpha от -4 до 12:" << endl;
     cin >> inputAlpha;
     if (inputAlpha < -4 || inputAlpha > 12) {
@@ -327,7 +327,6 @@ int main() {
     //cout << setprecision(4);
     cout << "mz = " << answer << endl;
     
-    */
     
     
     
@@ -336,20 +335,13 @@ int main() {
     float plotArray[1100];
     //Fill the plotArray
     for (int i=0; i<1100; i++) {
-        elimX(dataArray,arrayY, 0); //4->inputX
+        elimX(dataArray,arrayY, inputX); //0.2->inputX
         elimY(arrayY, arrayMach, y, i*0.01);
-        elimMach(arrayMach, arrayBeta, mach, 2.2); //2.2->inputMach
-        elimBeta(arrayBeta, arrayAlpha, beta, -4); //-4->inputBeta
-        elimAlpha(arrayAlpha, answer, alpha, 4); //4->inputAlpha
+        elimMach(arrayMach, arrayBeta, mach, inputMach); //2.2->inputMach
+        elimBeta(arrayBeta, arrayAlpha, beta, inputBeta); //-4->inputBeta
+        elimAlpha(arrayAlpha, answer, alpha, inputAlpha); //4->inputAlpha
         plotArray[i]=answer;
     }
-    
-    /*
-    for (int i=0; i<1100; i++) {
-        //cout << plotArray[i] << endl;     //Prints the genuine array
-        cout << ceil(-100*findMin(plotArray, 1100)+100*plotArray[i]) << endl;   //Prints the adapted array
-    }
-     */
     
     
     //Create a file for Mathematica
@@ -372,7 +364,7 @@ int main() {
     //Create an image
     //Create an empty canvas
     const int width=1100, height=ceil(100*(findMax(plotArray, 1100)-findMin(plotArray, 1100)));
-    cout << "width=" << width << ", height=" << height << endl;
+    //cout << "width=" << width << ", height=" << height << endl;
     ofstream fileObj2("plot.ppm");
     fileObj2 << "P3" << endl;
     fileObj2 << width << " " << height << endl;
