@@ -272,15 +272,9 @@ int main() {
     
     //Output a file containing the array for Swift
     ofstream fileObj5("swift.txt");
-    fileObj5 << "[";
-    for (int i=0; i<869; i++) {
-        fileObj5 << "[";
-        for (int j=0; j<4; j++) {
-            fileObj5 << dataArray[i][j] << ",";
-        }
-        fileObj5 << dataArray[i][4] << "],";
+    for (int i=0; i<870; i++) {
+            fileObj5 << "data[" << i << "] = [" << dataArray[i][0] << ", " << dataArray[i][1] << ", " << dataArray[i][2] << ", " << dataArray[i][3] << ", " << dataArray[i][4] << "]" << endl;
     }
-    fileObj5 << "]";                             //BUG!!! The penultimate symbol is a comma (it shouldn't be there)
     
     
     //Declare and fill additional arrays of varibales
