@@ -269,7 +269,19 @@ int main() {
     //Declare the main array and fill it with data from the file
     float dataArray[870][5];
     readf(dataArray, fileObj1);
-
+    
+    //Output a file containing the array for Swift
+    ofstream fileObj5("swift.txt");
+    fileObj5 << "[";
+    for (int i=0; i<869; i++) {
+        fileObj5 << "[";
+        for (int j=0; j<4; j++) {
+            fileObj5 << dataArray[i][j] << ",";
+        }
+        fileObj5 << dataArray[i][4] << "],";
+    }
+    fileObj5 << "]";                             //BUG!!! The penultimate symbol is a comma (it shouldn't be there)
+    
     
     //Declare and fill additional arrays of varibales
     float alpha[5]={-4,0,4,8,12};
